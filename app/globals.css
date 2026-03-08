@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0A0A0F;
+  --surface: #1A1A24;
+  --card: #242430;
+  --primary: #F5A623;
+  --primary-glow: rgba(245, 166, 35, 0.2);
+  --primary-glow-strong: rgba(245, 166, 35, 0.35);
+  --positive: #4ADE80;
+  --neutral: #60A5FA;
+  --mixed: #FBBF24;
+  --negative: #F87171;
+  --text: #E8E6E3;
+  --text-muted: #6B7280;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans JP", "Outfit", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+/* Safe area for bottom nav */
+.pb-safe {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar { display: none; }
+
+/* Glass card */
+.glass {
+  background: rgba(26, 26, 36, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: rgba(36, 36, 48, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Pulse glow for idle recording button */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--primary-glow), 0 0 60px rgba(245, 166, 35, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--primary-glow-strong), 0 0 80px rgba(245, 166, 35, 0.1);
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Recording active pulse — more dramatic */
+@keyframes recording-pulse {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(245, 166, 35, 0.5), 0 0 80px rgba(245, 166, 35, 0.15);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(245, 166, 35, 0.7), 0 0 120px rgba(245, 166, 35, 0.25);
+    transform: scale(1.03);
+  }
+}
+.animate-recording-pulse {
+  animation: recording-pulse 1.5s ease-in-out infinite;
+}
+
+/* Ambient background glow */
+@keyframes ambient-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1) translate(0, 0); }
+  33% { opacity: 0.5; transform: scale(1.1) translate(5px, -10px); }
+  66% { opacity: 0.4; transform: scale(0.95) translate(-5px, 5px); }
+}
+.ambient-orb {
+  animation: ambient-glow 8s ease-in-out infinite;
+}
+.ambient-orb-delayed {
+  animation: ambient-glow 10s ease-in-out 2s infinite;
+}
+
+/* Floating dots animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: float 3s ease-in-out 1s infinite;
+}
+.animate-float-delayed-2 {
+  animation: float 3s ease-in-out 2s infinite;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, #FFD093 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 166, 35, 0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Input focus glow */
+input:focus {
+  box-shadow: 0 0 0 1px var(--primary), 0 0 20px rgba(245, 166, 35, 0.1);
+}
+
+/* Smooth transitions for all interactive elements */
+button, a {
+  transition: all 0.2s ease;
+}
